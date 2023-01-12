@@ -15,16 +15,45 @@ RSpec.describe 'Bulk Discount Index Page' do
       visit "/merchants/#{merchant_1.id}/dashboard"
 
       click_link "View my Bulk Discounts"
-
+    
       expect(current_path).to eq merchant_bulk_discounts_path(merchant_1)
     end
 
     it 'shows all my bulk discounts with their discount and quantity threshold' do 
+      visit merchant_bulk_discounts_path(merchant_1)
 
+      within "#bk_discount_#{bk_1.id}" do 
+        expect(page).to have_content("Percent Discount: %#{bk_1.discount}")
+        expect(page).to have_content("Quantity Threshold: #{bk_1.quantity_threshold} items")
+      end
+
+      within "#bk_discount_#{bk_2.id}" do 
+      expect(page).to have_content("Percent Discount: %#{bk_2.discount}")
+      expect(page).to have_content("Quantity Threshold: #{bk_2.quantity_threshold} items")
+    end 
+
+      within "#bk_discount_#{bk_3.id}" do 
+      expect(page).to have_content("Percent Discount: %#{bk_3.discount}")
+      expect(page).to have_content("Quantity Threshold: #{bk_3.quantity_threshold} items")
     end
 
-    xit "has a link to each bulk discounts' show page" do
+      expect(page).to_not have_content(bk_4.id)
+    end
 
+    it "has a link to each bulk discounts' show page" do
+      visit merchant_bulk_discounts_path(merchant_1)
+
+      within "#bk_discount_#{bk_1.id}" do 
+        expect(page).to have_link "#{bk_1.id}", href: merchant_bulk_discount_path(merchant_1, bk_1)
+      end
+
+      within "#bk_discount_#{bk_2.id}" do 
+        expect(page).to have_link "#{bk_2.id}", href: merchant_bulk_discount_path(merchant_1, bk_2)
+      end 
+
+      within "#bk_discount_#{bk_3.id}" do 
+        expect(page).to have_link "#{bk_3.id}", href: merchant_bulk_discount_path(merchant_1, bk_3)
+      end
     end
   end
 end
