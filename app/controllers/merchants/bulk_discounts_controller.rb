@@ -10,6 +10,11 @@ class Merchants::BulkDiscountsController < ApplicationController
     
   end
 
+  def new 
+    merchant
+  end
+
+
   private
 
   def merchant
