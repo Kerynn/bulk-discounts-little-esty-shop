@@ -2,6 +2,12 @@ class Merchants::BulkDiscountsController < ApplicationController
 
   def index 
     merchant
+    @bulk_discounts = merchant.bulk_discounts
+  end
+
+  def show 
+    merchant 
+    
   end
 
   private
