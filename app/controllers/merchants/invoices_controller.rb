@@ -1,11 +1,8 @@
 class Merchants::InvoicesController < ApplicationController
 
-  before_action :github, only: [:index]
-
   def index
     merchant
     @invoices = @merchant.invoices
-    @github = GithubDecorator.new(GithubRepo.new)
     @invoices = @merchant.invoices.indexed
   end
 
@@ -19,9 +16,5 @@ class Merchants::InvoicesController < ApplicationController
 
   def merchant
     @merchant = Merchant.find(params[:merchant_id])
-  end
-
-  def github
-    @github = GithubRepo.new
   end
 end
