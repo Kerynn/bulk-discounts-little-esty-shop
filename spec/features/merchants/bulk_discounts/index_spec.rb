@@ -40,7 +40,7 @@ RSpec.describe 'Bulk Discount Index Page' do
       expect(page).to_not have_content(bk_4.id)
     end
 
-    it "has a link to each bulk discounts' show page" do
+    it "has a link to each bulk discount's show page" do
       visit merchant_bulk_discounts_path(merchant_1)
 
       within "#bk_discount_#{bk_1.id}" do 

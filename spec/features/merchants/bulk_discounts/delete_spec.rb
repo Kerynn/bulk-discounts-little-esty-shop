@@ -9,7 +9,7 @@ RSpec.describe 'Delete a bulk discount from a merchant' do
   let!(:bk_3) { merchant_1.bulk_discounts.create!(discount: 30, quantity_threshold: 20)}
 
   describe 'when I visit the merchant dashboard page' do 
-    it 'has a link to delete a discount next to each bulk discount' do 
+    it 'has a button to delete a discount next to each bulk discount' do 
       visit merchant_bulk_discounts_path(merchant_1)
 
       within "#bk_discount_#{bk_1.id}" do 
@@ -25,7 +25,7 @@ RSpec.describe 'Delete a bulk discount from a merchant' do
       end
     end 
 
-    it 'removes the discount when I click this link' do 
+    it 'removes the discount when the delete discount button is clicked' do 
       visit merchant_bulk_discounts_path(merchant_1)
 
       expect(page).to have_content(bk_1.id)
