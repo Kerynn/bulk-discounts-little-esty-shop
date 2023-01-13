@@ -45,7 +45,12 @@ RSpec.describe 'Bulk Discount Index Page' do
 
       within "#bk_discount_#{bk_1.id}" do 
         expect(page).to have_link "#{bk_1.id}", href: merchant_bulk_discount_path(merchant_1, bk_1)
+        click_link bk_1.id
       end
+
+      expect(current_path).to eq merchant_bulk_discount_path(merchant_1, bk_1)
+
+      visit merchant_bulk_discounts_path(merchant_1)
 
       within "#bk_discount_#{bk_2.id}" do 
         expect(page).to have_link "#{bk_2.id}", href: merchant_bulk_discount_path(merchant_1, bk_2)
@@ -55,5 +60,5 @@ RSpec.describe 'Bulk Discount Index Page' do
         expect(page).to have_link "#{bk_3.id}", href: merchant_bulk_discount_path(merchant_1, bk_3)
       end
     end
-  end
-end
+  end 
+end 
