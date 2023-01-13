@@ -1,10 +1,10 @@
 require 'rails_helper'
 
-RSpec.describe 'Bulk Discount Index Page' do
+RSpec.describe 'Create a New Discount for a Merchant' do
 
   let!(:merchant_1) { create(:merchant) }
 
-  describe 'create a new discount' do 
+  describe 'when I visit the merchant dashboard page' do 
     it 'has a link to add a new bulk discount' do 
       visit merchant_bulk_discounts_path(merchant_1)
 
