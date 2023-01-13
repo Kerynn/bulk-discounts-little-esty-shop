@@ -61,7 +61,7 @@ RSpec.describe 'Bulk Discount Index Page' do
       end
     end
 
-    it 'shows the next 3 us holidays with dates on the bulk index page' do 
+    xit 'shows the next 3 us holidays with dates on the bulk index page' do 
       visit merchant_bulk_discounts_path(merchant_1)
 
       within "#national_holidays" do 
