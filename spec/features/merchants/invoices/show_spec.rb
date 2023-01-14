@@ -137,6 +137,28 @@ RSpec.describe 'The merchant invoice show page', type: :feature do
 
         expect(page).to have_content("Total Revenue with Discounts: $91.00")
       end
+
+      it 'will have a link to the bulk discount show page if the invoice item qualifies' do 
+        visit merchant_invoice_path(merchant_4, invoice_3)
+
+        within "#item-#{item_3.id}" do
+          expect(page).to have_content("This invoice item qualifies for a bulk discount")
+          click_link "View this Bulk Discount"
+          expect(current_path).to eq merchant_bulk_discount_path(merchant_4, bk_2)
+        end 
+      end
+
+      xit 'will have a message display if invoice item did not qualify for a bulk discount' do 
+        visit merchant_invoice_path(merchant_4, invoice_3)
+
+        within "#item-#{item_2.id}" do
+          expect(page).to have_content("This invoice item did not qualify for a discount")
+        end 
+
+        within "#item-#{item_4.id}" do
+          expect(page).to have_content("This invoice item did not qualify for a discount")
+        end 
+      end
     end
   end
 end
