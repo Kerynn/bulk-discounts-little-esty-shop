@@ -13,12 +13,13 @@
         <th>Quantity</th>
         <th>Unit Price</th>
         <th>Status</th>
+        <th>Bulk Discounts</th>
       </tr>
       <% @items.each do |item| %>
         <tr id="item-<%= item.id %>">
 
           <td><%= item.name %></td>
-          
+
           <td><%= item.invoice_item_by_invoice(@invoice).quantity %></td>
           
           <td><%= number_to_currency((item.invoice_item_by_invoice(@invoice).unit_price)/100.00) %></td>
@@ -27,6 +28,16 @@
             <%= form_with model: item.invoice_item_by_invoice(@invoice), local: true do |form| %>
               <%= form.select :status, ['', 'pending', 'packaged', 'shipped'] %>
               <%= form.submit 'Update Item Status' %>
+            <% end %>
+          </td>
+
+          <td>
+            <% item.invoice_items.each do |ii| %>
+              <% if ii.discounts.nil? %>
+                This invoice item did not qualify for a discount.
+              <% else %>
+                <%= link_to "View this Bulk Discount", merchant_bulk_discount_path(@merchant, ii.discounts) %>
+              <% end %>  
             <% end %>
           </td>
         </tr>
