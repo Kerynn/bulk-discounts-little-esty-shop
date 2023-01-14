@@ -3,6 +3,7 @@
 <p>Created at: <%= @invoice.created_at.strftime("%A, %B %-d, %Y") %></p>
 <p>Customer: <%= @invoice.customer.full_name %></p>
 <p>Total revenue: <%= number_to_currency(@invoice.total_revenue / 100.00) %></p>
+<p>Total Revenue with Discounts: <%= number_to_currency(@invoice.total_discounted_revenue / 100.00) %></p>
 <div id="items">
 
 <h3>Items on this Invoice: </h3>
