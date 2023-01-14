@@ -7,6 +7,7 @@ RSpec.describe Invoice, type: :model do
     it {should have_many(:items).through(:invoice_items)}
     it {should have_many :transactions}
     it {should have_many(:merchants).through(:items)}
+    it {should have_many(:bulk_discounts).through(:merchants)}
   end
 
   describe 'class methods' do 
@@ -44,6 +45,7 @@ RSpec.describe Invoice, type: :model do
     let!(:invoice_3) { cust_1.invoices.create!(status: 1) }
     let!(:ii_1) { InvoiceItem.create!(quantity: 10, unit_price: 200, status: 2, item_id: item_2.id, invoice_id: invoice_3.id) }
     let!(:ii_2) { InvoiceItem.create!(quantity: 20, unit_price: 400, status: 2, item_id: item_3.id, invoice_id: invoice_3.id) }
+    let!(:ii_4) { InvoiceItem.create!(quantity: 3, unit_price: 500, status: 2, item_id: item_4.id, invoice_id: invoice_3.id) }
 
     let!(:invoice_4) { cust_2.invoices.create!(status: 1) }
     let!(:ii_3) { InvoiceItem.create!(quantity: 4, unit_price: 500, status: 2, item_id: item_4.id, invoice_id: invoice_4.id) }
@@ -63,7 +65,13 @@ RSpec.describe Invoice, type: :model do
 
     describe 'invoice_discount' do 
       it 'returns the amount to be discounted from an invoice' do 
-        expect(invoice_3.invoice_discount(merchant_4)).to eq(24)
+        expect(invoice_3.invoice_discount).to eq(2400)
+      end
+    end 
+
+    describe 'total_discounted_revenue' do 
+      it 'returns the total revenue for an invoice after the discount has been applied' do 
+        expect(invoice_3.total_discounted_revenue).to eq(9100)
       end
     end
   end 
