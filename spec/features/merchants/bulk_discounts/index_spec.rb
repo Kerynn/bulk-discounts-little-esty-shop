@@ -23,17 +23,17 @@ RSpec.describe 'Bulk Discount Index Page' do
       visit merchant_bulk_discounts_path(merchant_1)
 
       within "#bk_discount_#{bk_1.id}" do 
-        expect(page).to have_content("Percent Discount: %#{bk_1.discount}")
+        expect(page).to have_content("Percent Discount: #{bk_1.discount}%")
         expect(page).to have_content("Quantity Threshold: #{bk_1.quantity_threshold} items")
       end
 
       within "#bk_discount_#{bk_2.id}" do 
-      expect(page).to have_content("Percent Discount: %#{bk_2.discount}")
+      expect(page).to have_content("Percent Discount: #{bk_2.discount}%")
       expect(page).to have_content("Quantity Threshold: #{bk_2.quantity_threshold} items")
     end 
 
       within "#bk_discount_#{bk_3.id}" do 
-      expect(page).to have_content("Percent Discount: %#{bk_3.discount}")
+      expect(page).to have_content("Percent Discount: #{bk_3.discount}%")
       expect(page).to have_content("Quantity Threshold: #{bk_3.quantity_threshold} items")
     end
 
