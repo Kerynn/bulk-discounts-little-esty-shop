@@ -25,7 +25,7 @@ RSpec.describe 'Create a New Discount for a Merchant' do
 
       within "#bk_discount_#{new_bk.id}" do 
         expect(page).to have_content(new_bk.id)
-        expect(page).to have_content("Percent Discount: %#{new_bk.discount}")
+        expect(page).to have_content("Percent Discount: #{new_bk.discount}%")
         expect(page).to have_content("Quantity Threshold: #{new_bk.quantity_threshold} items")    
       end
     end

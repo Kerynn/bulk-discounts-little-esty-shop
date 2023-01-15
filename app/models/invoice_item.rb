@@ -11,4 +11,10 @@ class InvoiceItem < ApplicationRecord
   def revenue
     InvoiceItem.where(id: self.id).sum('quantity*unit_price')
   end
+
+  def discounts 
+    bulk_discounts.joins(:invoice_items)
+    .where("invoice_items.quantity >= bulk_discounts.quantity_threshold AND invoice_items.item_id = items.id")
+    .order(discount: :desc).first
+  end
 end

@@ -56,5 +56,5 @@ RSpec.describe Item, type: :model do
         expect(item.shippable_invoices).to eq([inv1, inv3])
       end
     end
-  end
+  end 
 end
