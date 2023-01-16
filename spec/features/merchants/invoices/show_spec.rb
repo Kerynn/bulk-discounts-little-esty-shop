@@ -129,13 +129,21 @@ RSpec.describe 'The merchant invoice show page', type: :feature do
       it 'displays the total revenue that will be generated from all of my items on the invoice with no discounts' do
         visit merchant_invoice_path(merchant_4, invoice_3)
 
-        expect(page).to have_content("Total revenue: $115.00")
+        expect(page).to have_content("Total revenue: $100.00")
+        
+        visit merchant_invoice_path(merchant_5, invoice_3)
+
+        expect(page).to have_content("Total revenue: $15.00")
       end
   
       it 'also shows the total revenue after bulk discounts have been applied' do 
         visit merchant_invoice_path(merchant_4, invoice_3)
 
-        expect(page).to have_content("Total Revenue with Discounts: $91.00")
+        expect(page).to have_content("Total Revenue with Discounts: $76.00")
+
+        visit merchant_invoice_path(merchant_5, invoice_3)
+ 
+        expect(page).to have_content("Total revenue: $15.00")
       end
 
       it 'will have a link to the bulk discount show page if the invoice item qualifies' do 
