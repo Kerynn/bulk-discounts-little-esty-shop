@@ -3,7 +3,7 @@ class Merchants::BulkDiscountsController < ApplicationController
   def index 
     merchant
     @bulk_discounts = merchant.bulk_discounts
-    # @holidays = HolidaySearch.new.holidays 
+    @holidays = HolidaySearch.new.holidays 
   end
 
   def show 

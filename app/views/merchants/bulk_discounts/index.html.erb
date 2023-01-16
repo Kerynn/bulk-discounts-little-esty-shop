@@ -11,3 +11,9 @@
 
 <%= link_to "Create a New Bulk Discount", new_merchant_bulk_discount_path(@merchant) %>
 <br>
+
+<div id="national_holidays"> 
+<h2>National Holidays: </h2>
+<% @holidays.each do |holiday| %> 
+  <li><%= holiday.name %>: <%= holiday.date %></li> 
+<% end %> </div>
