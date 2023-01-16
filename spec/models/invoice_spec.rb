@@ -60,6 +60,28 @@ RSpec.describe Invoice, type: :model do
 
         expect(invoice_1.total_revenue).to eq(30000)
         expect(invoice_2.total_revenue).to eq(15000)
+        expect(invoice_3.total_revenue).to eq(11500)
+      end
+    end
+
+    describe '#total_merchant_rev' do 
+      it 'returns the total revenue for an invoice of a specific merchant' do 
+        expect(invoice_3.total_merchant_rev(merchant_4)).to eq(10000)
+        expect(invoice_3.total_merchant_rev(merchant_5)).to eq(1500)
+      end
+    end
+
+    describe '#merchant_discount_amount' do 
+      it 'returns the amount to be discounted from a merchant invoice' do 
+        expect(invoice_3.merchant_discount_amount(merchant_4)).to eq(2400)
+        expect(invoice_3.merchant_discount_amount(merchant_5)).to eq(0)
+      end
+    end 
+
+    describe '#merchant_total_discounted_rev' do 
+      it 'returns the total revenue for a merchant invoice after discounts' do 
+        expect(invoice_3.merchant_total_discounted_rev(merchant_4)).to eq(7600)
+        expect(invoice_3.merchant_total_discounted_rev(merchant_5)).to eq(1500)
       end
     end
 
