@@ -63,7 +63,7 @@ RSpec.describe 'Bulk Discount Index Page' do
 
     it 'shows the next 3 us holidays with dates on the bulk index page' do 
       visit merchant_bulk_discounts_path(merchant_1)
-save_and_open_page
+
       within "#national_holidays" do 
         expect(page).to have_content("National Holidays:")
         expect(page).to have_content("Martin Luther King, Jr. Day: 2023-01-16")
