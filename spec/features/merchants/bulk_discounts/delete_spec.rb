@@ -8,7 +8,7 @@ RSpec.describe 'Delete a bulk discount from a merchant' do
   let!(:bk_2) { merchant_1.bulk_discounts.create!(discount: 10, quantity_threshold: 5)}
   let!(:bk_3) { merchant_1.bulk_discounts.create!(discount: 30, quantity_threshold: 20)}
 
-  describe 'when I visit the merchant dashboard page' do 
+  describe 'when I visit the merchant bulk discounts index page' do 
     it 'has a button to delete a discount next to each bulk discount' do 
       visit merchant_bulk_discounts_path(merchant_1)
 

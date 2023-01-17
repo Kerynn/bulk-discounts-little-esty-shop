@@ -94,12 +94,20 @@ RSpec.describe 'Admin Invoice Show Page' do
                 visit admin_invoice_path(invoice_3)
       
                 expect(page).to have_content("Total Revenue: $115.00")
+
+                visit admin_invoice_path(invoice_4)
+
+                expect(page).to have_content("Total Revenue: $20.00")
             end
         
             it 'also shows the total revenue after bulk discounts have been applied' do 
                 visit admin_invoice_path(invoice_3)
       
                 expect(page).to have_content("Total Revenue with Discounts: $91.00")
+
+                visit admin_invoice_path(invoice_4)
+
+                expect(page).to have_content("Total Revenue with Discounts: $20.00")
             end
         end
     end
