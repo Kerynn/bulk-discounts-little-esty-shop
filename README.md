@@ -12,9 +12,10 @@ Hosted on https://safe-mesa-54314.herokuapp.com/
 
     Kerynn Davis: https://github.com/Kerynn
 
-### Additional Authors of Original "Little Esty Shop Project"
+### Additional Authors on Original "Little Esty Shop"
 
     Thomas Casady: https://github.com/Tscasady
+    Kerynn Davis: https://github.com/Kerynn
     Patricia Severance: https://github.com/pkseverance
     Alex Pitzel: https://github.com/pitzelalex
 
